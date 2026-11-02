@@ -24,9 +24,10 @@
     - the work grows at the same rate as the input
   - O(log n): logarithmic time, e.g binary search
     - the work grows by one step each time the input doubles. Faster than O(n), and a **lot** faster than it as the input grows
-  - O(n * log n): e.g, a fast sorting algorithm
-  - O(n ^ 2): e.g, a slow sorting algorithm
+  - O(n * log n): linearithmic time, e.g, a fast sorting algorithm
+  - O(n ^ 2): exponential time, e.g, a slow sorting algorithm
   - O(n!): factorial time e.g, a **really** slow algorithm, like the travelling salesperson algorithm.
+  - O(1): constant time
 - Constants are dropped: O(n/26) and O(2n) are both just O(n). Big O describes how work grows, not the exact count.
 
 ## Travelling Salesperson
