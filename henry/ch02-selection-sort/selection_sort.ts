@@ -27,7 +27,7 @@ function selectionSortV2(arr: number[]) {
     let max = arr[j];
     let maxIndex = j;
 
-    for (j + 1; i < arr.length; i++) {
+    for (let i = j + 1; i < arr.length; i++) {
       if (arr[i] > max) {
         max = arr[i];
         maxIndex = i;
