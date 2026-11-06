@@ -1,4 +1,4 @@
-function selectionSort(arr: number[]) {
+function selectionSortV1(arr: number[]) {
   const sorted: number[] = [];
   const remaining = [...arr];
 
@@ -22,9 +22,27 @@ function selectionSort(arr: number[]) {
   return sorted;
 }
 
+function selectionSortV2(arr: number[]) {
+  for (let j = 0; j < arr.length - 1; j++) {
+    let max = arr[j];
+    let maxIndex = j;
+
+    for (j + 1; i < arr.length; i++) {
+      if (arr[i] > max) {
+        max = arr[i];
+        maxIndex = i;
+      }
+    }
+
+    [arr[maxIndex], arr[j]] = [arr[j], arr[maxIndex]];
+  }
+
+  return arr;
+}
+
 const randomIntegers: number[] = Array.from(
   { length: 10 },
   () => Math.floor(Math.random() * 100) + 1,
 );
 
-console.log(selectionSort(randomIntegers));
+console.log(selectionSortV2(randomIntegers));
