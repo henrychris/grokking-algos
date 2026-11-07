@@ -95,19 +95,25 @@ export class LinkedList<T> {
   }
 
   insertAt(index: number, value: T) {
-    if (index < 0 || index >= this.length)
+    if (index < 0 || index > this.length)
       throw new RangeError("index out of range");
-    
-    let node = new LLNode(value);
-    
-    if (index === this.length - 1) {
-      node.next = this.tail;
-      this.length++;
-      return;
+
+    if (index === 0) {
+      return this.prepend(value);
     }
 
-    while (node) {
-      if(i === index) 
+    if (index === this.length) {
+      return this.append(value);
+    }
+
+    let prev = this.head;
+    for (let i = 1; i < index; i++) if (prev) prev = prev.next;
+
+    if (prev) {
+      const latest = new LLNode(value);
+      latest.next = prev.next;
+      prev.next = latest;
+      this.length++;
     }
   }
 
@@ -115,7 +121,32 @@ export class LinkedList<T> {
    * returns the removed value, or undefined if the index is out of range
    * @param index The index of the value to remove
    */
-  removeAt(index: number): T | undefined {}
+  removeAt(index: number): T | undefined {
+    if (index < 0 || index >= this.length || !this.head) return undefined;
+
+    if (index === 0) {
+      const removed = this.head;
+      this.head = removed.next;
+      removed.next = null;
+      if (!this.head) this.tail = null;
+      this.length--;
+      return removed.payload;
+    }
+
+    let prev = this.head;
+    for (let i = 1; i < index; i++) {
+      prev = prev.next!;
+    }
+
+    const removed = prev.next!;
+    prev.next = removed.next;
+    removed.next = null;
+
+    if (removed === this.tail) this.tail = prev;
+
+    this.length--;
+    return removed.payload;
+  }
 
   /**
    * Return the index where a value first appears in the list. Returns -1 if the value isn’t in the list.
