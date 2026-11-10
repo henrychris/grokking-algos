@@ -21,7 +21,7 @@ describe("factorial", () => {
   });
 });
 
-describe.only("sum", () => {
+describe("sum", () => {
   test("empty array is 0", () => {
     expect(sum([])).toBe(0);
   });
